@@ -14,6 +14,9 @@ import {
 import {useRandomCatGifState} from "./src/random-cat-gif.state";
 import {DisplayImageComponent} from "./src/components/display-image.component";
 import {useDisplayElementAnimation} from "./src/hooks/display-element.animation";
+import {ShareButton} from "./src/components/share-button.component";
+import {DownloadButton} from "./src/components/download-button.component";
+import {NextImage} from "./src/components/next-image.component";
 
 export default function App() {
     const {status, actions, currentGif} = useRandomCatGifState();
@@ -30,24 +33,25 @@ export default function App() {
             <ImageBackground source={{uri: currentGif}} resizeMode="cover" style={styles.image}>
                 <View style={styles.descriptionContainer}>
                     <View style={styles.description}>
-                        <Animated.View style={{opacity: spinnerOpacity, transform: [{translateY: spinnerTransform}]}}>
+                        <Animated.View style={{position: 'absolute', width: '100%', opacity: spinnerOpacity, transform: [{translateY: spinnerTransform}]}}>
                             <ActivityIndicator size="large" color="white"/>
                         </Animated.View>
-                        <Animated.View style={{opacity: mainGifOpacity, transform: [{translateY: mainGifTransform}]}}>
+                        <Animated.View style={{position: 'absolute', width: '100%', height: '100%', justifyContent: 'center', display: 'flex', flex: 1, opacity: mainGifOpacity, transform: [{translateY: mainGifTransform}]}}>
                             <DisplayImageComponent url={currentGif as string}/>
                             <View style={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
-                                <Button
-                                    title={'Share'}
-                                    onPress={() => console.log('TODO')}/>
-                                <Button
-                                    title={'Download'}
-                                    onPress={() => console.log('TODO')}/>
+                                <ShareButton/>
+                                <DownloadButton/>
                             </View>
+                            <NextImage onPress={() => actions.searchAnother()}/>
                         </Animated.View>
-                        <Button title={'Show me another cat'} onPress={() => actions.searchAnother()}/>
                     </View>
                 </View>
             </ImageBackground>
+            <View style={{position: 'absolute', bottom: 30, left: 15}}>
+                <Text style={{color: 'white'}}>
+                    Using Gifs from `giphy.com`.
+                </Text>
+            </View>
             <StatusBar style="auto"/>
         </View>
     );
@@ -65,10 +69,13 @@ const styles = StyleSheet.create({
     description: {
         backgroundColor: '#000000c8',
         flex: 1,
+        display: 'flex',
         borderRadius: 10,
         paddingTop: 10,
         paddingBottom: 10,
         maxHeight: '50%',
+        height: '50%',
+        justifyContent: 'center'
     },
     loadingIcon: {
         flexDirection: "row",
