@@ -39,8 +39,8 @@ export default function App() {
                         <Animated.View style={{position: 'absolute', width: '100%', height: '100%', justifyContent: 'center', display: 'flex', flex: 1, opacity: mainGifOpacity, transform: [{translateY: mainGifTransform}]}}>
                             <DisplayImageComponent url={currentGif as string}/>
                             <View style={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
-                                <ShareButton/>
-                                <DownloadButton/>
+                                <ShareButton url={currentGif as string}/>
+                                {/*<DownloadButton/>*/}
                             </View>
                             <NextImage onPress={() => actions.searchAnother()}/>
                         </Animated.View>

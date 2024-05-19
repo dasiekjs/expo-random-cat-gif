@@ -1,5 +1,6 @@
 import {StyleSheet, Text, TouchableOpacity} from "react-native";
 import { Fontisto } from '@expo/vector-icons';
+import * as Sharing from 'expo-sharing';
 
 const styleSheet = StyleSheet.create({
    title: {
@@ -22,8 +23,10 @@ const styleSheet = StyleSheet.create({
     }
 });
 
-export const ShareButton = () => {
-    return <TouchableOpacity style={styleSheet.main}>
+export const ShareButton = ({url}: {url: string}) => {
+    return <TouchableOpacity style={styleSheet.main} onPress={() => {
+Sharing.shareAsync(url).then(() => {})
+    }}>
         <Fontisto name="share-a" size={15} color="white" />
         <Text style={styleSheet.title}>Share</Text>
     </TouchableOpacity>
