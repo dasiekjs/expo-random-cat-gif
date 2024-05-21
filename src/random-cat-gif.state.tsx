@@ -18,7 +18,7 @@ const getNextGif = (): Promise<string> => {
 // Testing case to not run giphy
 const getNextMockedGif = (): Promise<string> => {
     const gifList = [
-        "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExaDRndTJ6YjkwMjNvZDU1Mms2ZHJpdnA0ZHJzYWdqNXNrdjdpbGV2MyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/mlvseq9yvZhba/giphy.gif",
+        "https://media4q.giphy.com/media/v1.Y2lkPTc5MGI3NjExaDRndTJ6YjkwMjNvZDU1Mms2ZHJpdnA0ZHJzYWdqNXNrdjdpbGV2MyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/mlvseq9yvZhba/giphy.gif",
         "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExbjhudDNpazJoaDZubGk0cjkxcHczbGpjYnJ5NzJpY2xwcDljb3prZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/7VZrSiHHHUlKU/giphy.gif",
         "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExYjgzbmtlZmdkOWNvam9lbDJqeXE1dXYzbnlyd2lqMDA0eWE3Mjd5ZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/tVmthN5Mf8lGg/giphy.gif"
     ];
@@ -41,8 +41,7 @@ export const useRandomCatGifState = () => {
     }, [status]);
 
     const searchAnotherGif = () => {
-        console.log('search next?');
-        // getNextGif
+        // getNextGif()
         getNextMockedGif()
             .then((gifUrl) => {
                 dispatch({type: 'showGif', payload: { gifUrl }});

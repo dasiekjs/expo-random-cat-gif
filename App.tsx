@@ -33,10 +33,24 @@ export default function App() {
             <ImageBackground source={{uri: currentGif}} resizeMode="cover" style={styles.image}>
                 <View style={styles.descriptionContainer}>
                     <View style={styles.description}>
-                        <Animated.View style={{position: 'absolute', width: '100%', opacity: spinnerOpacity, transform: [{translateY: spinnerTransform}]}}>
+                        <Animated.View style={{
+                            position: 'absolute',
+                            width: '100%',
+                            opacity: spinnerOpacity,
+                            transform: [{translateY: spinnerTransform}]
+                        }}>
                             <ActivityIndicator size="large" color="white"/>
                         </Animated.View>
-                        <Animated.View style={{position: 'absolute', width: '100%', height: '100%', justifyContent: 'center', display: 'flex', flex: 1, opacity: mainGifOpacity, transform: [{translateY: mainGifTransform}]}}>
+                        <Animated.View style={{
+                            position: 'absolute',
+                            width: '100%',
+                            height: '100%',
+                            justifyContent: 'center',
+                            display: 'flex',
+                            flex: 1,
+                            opacity: mainGifOpacity,
+                            transform: [{translateY: mainGifTransform}]
+                        }}>
                             <DisplayImageComponent url={currentGif as string}/>
                             <View style={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
                                 <ShareButton url={currentGif as string}/>
@@ -48,9 +62,7 @@ export default function App() {
                 </View>
             </ImageBackground>
             <View style={{position: 'absolute', bottom: 30, left: 15}}>
-                <Text style={{color: 'white'}}>
-                    Using Gifs from `giphy.com`.
-                </Text>
+                <Image source={require('./assets/powered_by_giphy.png')}/>
             </View>
             <StatusBar style="auto"/>
         </View>
