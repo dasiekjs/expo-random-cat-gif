@@ -3,15 +3,11 @@ import {randomCatGifReducer} from "./random-cat-gif.reducer";
 
 
 const getNextGif = (): Promise<string> => {
-    const giphyApiKey = process.env.EXPO_PUBLIC_GIPHY_API_KEY;
-    return fetch(`https://api.giphy.com/v1/gifs/random?api_key=${giphyApiKey}&tag=funny+cats&rating=g`)
+    const giphyUrl = process.env.EXPO_PUBLIC_GIH_SERVICE_URL as string;
+    return fetch(giphyUrl)
         .then((d) => d.json())
         .then((response) => {
-            console.log(response);
-            return response.data;
-        })
-        .then((data) => {
-            return data.images['original']['url'];
+            return response.image;
         });
 }
 
